@@ -9,16 +9,22 @@
  * `Env` object can be regenerated with `npm run cf-typegen`.
  *
  * Learn more at https://developers.cloudflare.com/workers/
+ * 
+ * Test POST request using the following command from PowerShell (change the data): 
+ * Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8787/images -Headers @{"Content-Type"="application/json"} -Body '{ "id": 4, "url": "https://example.com/some_image.png", "author": "Lia Michelle" }'
+ * And for now, it will not save anything. It will remain in memory until the worked is restarted.
  */
 
 import { AutoRouter } from 'itty-router';
 import getImages from './handlers/get_images';
+import createImage from './handlers/create_image';
 
 // 1. Initialize the modern AutoRouter
 const router = AutoRouter();
 
 // 2. Define your routes
-router.get('/images', getImages);
+router.get('/images', getImages)
+      .post('/images', createImage);
 
 // 3. Export the fetch pipeline cleanly using standard ESM syntax
 export default {
