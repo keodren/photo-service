@@ -11,8 +11,8 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { Router } from 'itty-router'
 import getImages from './handlers/get_images';
+import { Router } from 'itty-router'
 
 //Create the router
 const router = Router()
@@ -29,7 +29,8 @@ export interface Env {
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return router.handle(request);
+		const response = await router.handle(request);
+		return response;
 	},
 } satisfies ExportedHandler<Env>;
 
