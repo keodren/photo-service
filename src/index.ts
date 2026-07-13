@@ -11,9 +11,25 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { Router } from 'itty-router'
+import getImages from './handlers/get_images';
+
+//Create the router
+const router = Router()
+
+//Route traffic rules
+router.get('/images', getImages);
+
+//404 handler for routing anything else
+router.all('*', () => new Response('Not Found', { status: 404 }));
+
+export interface Env {
+	// MY_KV_NAMSPACE: KVNamespace;
+}
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response("Hello World!");
+		return router.handle(request);
 	},
 } satisfies ExportedHandler<Env>;
 
