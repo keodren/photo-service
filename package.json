@@ -15,5 +15,13 @@
     "typescript": "^5.5.2",
     "vitest": "~3.2.0",
     "wrangler": "^4.110.0"
+  },
+  "dependencies": {
+    "itty-router": "^5.0.24"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "esbuild": true,
+    "workerd": true
   }
 }
