@@ -11,6 +11,22 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { AutoRouter } from 'itty-router';
+import getImages from './handlers/get_images';
+
+// 1. Initialize the modern AutoRouter
+const router = AutoRouter();
+
+// 2. Define your routes
+router.get('/images', getImages);
+
+// 3. Export the fetch pipeline cleanly using standard ESM syntax
+export default {
+    fetch: router.fetch
+} satisfies ExportedHandler;
+
+// OLD Version of itty-router Router method not supported anymore
+/*
 import getImages from './handlers/get_images';
 import { Router } from 'itty-router'
 
@@ -33,7 +49,7 @@ export default {
 		return response;
 	},
 } satisfies ExportedHandler<Env>;
-
+*/
 
 //export default {
 //	async scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {

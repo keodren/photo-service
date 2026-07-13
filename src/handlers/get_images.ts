@@ -1,27 +1,19 @@
 import { ALL_IMAGES } from '../data/image_store';
-import { IRequest } from 'itty-router'
+import { IRequest } from 'itty-router';
 
-const getImages = (request: IRequest) => {
-    let images = ALL_IMAGES
+const getImages = (request: IRequest): Response => {
+    let images = ALL_IMAGES;
 
-    //if (request.query.count) {
-    //    images = images.slice(0, parseInt(request.query.count[0]))
-    //}
-
-    // 1. Safely check if count exists in the query parameters
+    // In v5, request.query.count is automatically a string (e.g., "2")
     if (request.query && request.query.count) {
-        // 2. Treat request.query.count directly as a string, not an array
-        const countParam = Array.isArray(request.query.count) 
-            ? request.query.count[0] 
-            : request.query.count;
-
-        const count = parseInt(countParam, 10);
+        const count = parseInt(request.query.count as string, 10);
         
         if (!isNaN(count)) {
             images = images.slice(0, count);
         }
     }
 
+    // AutoRouter will naturally handle this response format
     return new Response(JSON.stringify(images), {
         headers: { 'Content-Type': 'application/json' }
     });
