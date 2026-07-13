@@ -16,3 +16,17 @@ export default {
 		return new Response("Hello World!");
 	},
 } satisfies ExportedHandler<Env>;
+
+
+//export default {
+//	async scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+//		switch (event.cron) {
+//			case "*/15 * * * *":
+//				console.log("This will run every 15 minutes");
+//				break;
+//			case "*/30 * * * *":
+//				console.log("This will run every 30 minutes");
+//				break;
+//		}
+//	}
+//} satisfies ExportedHandler<Env>;
