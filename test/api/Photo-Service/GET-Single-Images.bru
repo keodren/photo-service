@@ -1,0 +1,20 @@
+meta {
+  name: GET-Single-Images
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{endpoint_url}}/{{id}}
+  body: none
+  auth: inherit
+}
+
+vars:pre-request {
+  id: 2
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
