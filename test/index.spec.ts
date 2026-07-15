@@ -55,4 +55,41 @@ describe("Photo Service API - Unit Tests", () => {
 			);
 		});
 	});
+
+	// Testing all POST APIs
+	describe("POST /images", () => {
+		it("should return a 201 response code", async () => {
+			const payload = {
+				"id": 4,
+				"url": "https://example.com/some_image.png",
+				"author": "Lia Michelle"
+			}
+			
+			const response = await SELF.fetch('http://www.example.com/images', {
+				method: "POST",
+				body: JSON.stringify(payload)
+			});
+
+			expect(response.status).toEqual(201);
+		});
+
+		it("should return the created image in the response", async () => {
+			const newImage = {
+				"id": 4,
+				"url": "https://example.com/some_image.png",
+				"author": "Lia Michelle"
+			}
+			
+			const response = await SELF.fetch('http://www.example.com/images', {
+				method: "POST",
+				body: JSON.stringify(newImage)
+			});
+
+			const json = await response.json();
+
+			expect(json).toEqual(
+				expect.objectContaining(newImage)
+			);
+		});
+	});
 });
