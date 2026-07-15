@@ -11,28 +11,14 @@ import worker from "../src/index";
 // `Request` to pass to `worker.fetch()`.
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
-/*
-describe("Hello World worker", () => {
-	it("responds with Hello World! (unit style)", async () => {
-		const request = new IncomingRequest("http://example.com");
-		// Create an empty context to pass to `worker.fetch()`.
-		const ctx = createExecutionContext();
-		const response = await worker.fetch(request, env, ctx);
-		// Wait for all `Promise`s passed to `ctx.waitUntil()` to settle before running test assertions
-		await waitOnExecutionContext(ctx);
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
-	});
-
-	it("responds with Hello World! (integration style)", async () => {
-		const response = await SELF.fetch("https://example.com");
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
-	});
-});
-*/
-
-describe("Photo service", () => {
+describe("Photo Service - Unit Tests", () => {
 	it("returns a 404 if a non-existent endpoint is called", async () => {
 		const response = await SELF.fetch('http://www.example.com/invalid-endpoint');
 		expect(response.status).toEqual(404);
     });
+
+	it("should return a 200 OK response", async () => {
+		const response = await SELF.fetch('http://www.example.com/images');
+		expect(response.status).toEqual(200);
+	});
 });
