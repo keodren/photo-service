@@ -11,6 +11,7 @@ import worker from "../src/index";
 // `Request` to pass to `worker.fetch()`.
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
+/*
 describe("Hello World worker", () => {
 	it("responds with Hello World! (unit style)", async () => {
 		const request = new IncomingRequest("http://example.com");
@@ -26,4 +27,12 @@ describe("Hello World worker", () => {
 		const response = await SELF.fetch("https://example.com");
 		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
 	});
+});
+*/
+
+describe("Photo service", () => {
+	it("returns a 404 if a non-existent endpoint is called", async () => {
+		const response = await SELF.fetch('http://www.example.com/invalid-endpoint');
+		expect(response.status).toEqual(404);
+    });
 });
