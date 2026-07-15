@@ -12,13 +12,17 @@ import worker from "../src/index";
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
 describe("Photo Service - Unit Tests", () => {
+	// Testing a non-existing endpoint
 	it("returns a 404 if a non-existent endpoint is called", async () => {
 		const response = await SELF.fetch('http://www.example.com/invalid-endpoint');
 		expect(response.status).toEqual(404);
     });
 
-	it("should return a 200 OK response", async () => {
-		const response = await SELF.fetch('http://www.example.com/images');
-		expect(response.status).toEqual(200);
+	// Testing all GET APIs
+	describe("Testing - GET /images", () => {
+		it("should return a 200 OK response", async () => {
+			const response = await SELF.fetch('http://www.example.com/images');
+			expect(response.status).toEqual(200);
+		});
 	});
 });
