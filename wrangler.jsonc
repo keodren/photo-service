@@ -16,10 +16,9 @@
 	],
 	"d1_databases": [
 		{
-			"binding": "photo_service",
+			"binding": "DB",
 			"database_name": "photo-service",
-			"database_id": "d56e4814-16a1-4e8d-a7f8-dcece7a59fca",
-			"remote": true
+			"database_id": "d56e4814-16a1-4e8d-a7f8-dcece7a59fca"
 		}
 	]
 	/**
