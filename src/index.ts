@@ -15,13 +15,14 @@
  * And for now, it will not save anything. It will remain in memory until the worked is restarted.
  */
 
-import { AutoRouter } from 'itty-router';
+import { AutoRouter, IRequest } from 'itty-router';
 import getImages from './handlers/get_images';
 import getSingleImage from './handlers/get_single_image';
 import createImage from './handlers/create_image';
+import { Env } from './env';
 
 // 1. Initialize the modern AutoRouter
-const router = AutoRouter();
+const router = AutoRouter<IRequest, [Env]>();
 
 // 2. Define your routes
 router.get('/images', getImages)
@@ -31,7 +32,7 @@ router.get('/images', getImages)
 // 3. Export the fetch pipeline cleanly using standard ESM syntax
 export default {
     fetch: router.fetch
-} satisfies ExportedHandler;
+} satisfies ExportedHandler<Env>;
 
 // OLD Version of itty-router Router method not supported anymore
 /*
