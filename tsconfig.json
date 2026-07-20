@@ -38,9 +38,13 @@
 		"skipLibCheck": true,
 		"types": [
 			"./worker-configuration.d.ts",
-			"node"
+			"node",
+			"@cloudflare/vitest-pool-workers", // 1. CRITICAL: Allows typescript to resolve "cloudflare:test" exports
+			
 		]
 	},
-	"exclude": ["test"],
-	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
+	"include": ["worker-configuration.d.ts", 
+	            "src/**/*.ts",
+				"test/**/*.ts",               // If your index.spec.ts is inside a folder named 'test'
+			]
 }
